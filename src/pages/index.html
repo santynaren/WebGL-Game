@@ -1,55 +1,195 @@
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Hello, WebVR! • A-Frame</title>
-    <meta name="description" content="Hello, WebVR! • A-Frame">
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <!-- <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script> -->
-    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
-    <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
-  </head>
-  <body>
-    <a-scene >
-        <a-sky src="../../assets/images/6.jpg" rotation="0 0 0"></a-sky>
-<!--        
+    <head>
+        <meta charset="utf-8">
+        <title>Hello, WebVR! • A-Frame</title>
+        <meta name="description" content="Hello, WebVR! • A-Frame">
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <!-- <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script> -->
+        <script
+            src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
+        <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
+    </head>
+    <body>
+        <a-scene >
+            <a-sky src="../../assets/images/6.jpg" rotation="0 0 0"></a-sky>
+            <!--        
       <a-box position="-1 0.5 -3" scale="2.5 0.5 2.5" rotation="0 0 0" color="#ff0000" shadow></a-box>
       <a-box position="-1 1 -3" scale="1.5 0.5 1.5" rotation="0 0 0" color="#0000ff" shadow></a-box>
       <a-box position="-1 1.5 -3" scale="1 0.5 1" rotation="0 0 0" color="#00ff00" shadow></a-box> -->
-      <a-cylinder position="-1 3 -3" radius="0.1" height="6˳" color="#FFC65D">
-     
+            <a-cylinder position="-1 3 -3" radius="0.1" height="6˳" color="#FFC65D"></a-cylinder>
 
-</a-cylinder>
-
-
-<!--   
+            <!-- Slot C  -->
+            <!--   
 <a-box position="-4 0.5 -3" scale="2.5 0.5 2.5" rotation="0 0 0" color="#ff0000" shadow></a-box>
 <a-box position="-4 1 -3" scale="1.5 0.5 1.5" rotation="0 0 0" color="#0000ff" shadow></a-box>
 <a-box position="-4 1.5 -3" scale="1 0.5 1" rotation="0 0 0" color="#00ff00" shadow></a-box> -->
-<a-cylinder position="-4 3 -3" radius="0.1" height="6" color="#FFC65D">
+            <a-cylinder position="-4 3 -3" radius="0.1" height="6" color="#FFC65D"></a-cylinder>
 
+            <!-- Slot A -->
 
-</a-cylinder>
+            <a-box
+                onClick="fun(this,100)"
+                id="bigBox"
+                position="-7 0.5 -3"
+                scale="2.5 0.5 2.5"
+                rotation="0 0 0"
+                color="#ff0000"
+                shadow></a-box>
+            <a-box
+                onClick="fun(this,50)"
+                position="-7 1 -3"
+                scale="1.5 0.5 1.5"
+                rotation="0 0 0"
+                id="medBox"
+                color="#0000ff"
+                shadow></a-box>
+            <a-box
+                onClick="fun(this,25)"
+                position="-7 1.5 -3"
+                scale="1 0.5 1"
+                rotation="0 0 0"
+                color="#00ff00"
+                shadow></a-box>
+            <a-cylinder
+                position="-7 3 -3"
+                radius="0.1"
+                height="6"
+                id="smallBox"
+                color="#FFC65D"></a-cylinder>
 
-
-  
-<a-box position="-7 0.5 -3" scale="2.5 0.5 2.5" rotation="0 0 0" color="#ff0000" shadow></a-box>
-<a-box position="-7 1 -3" scale="1.5 0.5 1.5" rotation="0 0 0" color="#0000ff" shadow></a-box>
-<a-box position="-7 1.5 -3" scale="1 0.5 1" rotation="0 0 0" color="#00ff00" shadow></a-box>
-<a-cylinder position="-7 3 -3" radius="0.1" height="6˳" color="#FFC65D">
-
-
-</a-cylinder>
-
-
-      <!-- <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow></a-sphere>
+            <!-- Slot B -->
+            <!-- <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow></a-sphere>
       <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow></a-cylinder> -->
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="20" height="10" color="#7BC8A4" shadow></a-plane>
-      <a-camera position="0 1 1">
-          <a-cursor color="#000"></a-cursor>
+            <a-plane
+                position="0 0 -4"
+                rotation="-90 0 0"
+                width="20"
+                height="10"
+                color="#7BC8A4"
+                shadow></a-plane>
+            <a-camera position="0 1 1">
+                <a-cursor color="#000"></a-cursor>
 
-      </a-camera>
-    
-    
-    </a-scene>
-  </body>
+            </a-camera>
+
+        </a-scene>
+        <script>
+            var lenA = [100,50,25];
+            var lenB = [];
+            var lenC = [];
+            var slots = [
+                [
+                    {
+                        x: -7,
+                        y: 0.5,
+                        z: -3
+                    }, {
+                        x: -7,
+                        y: 1,
+                        z: -3
+                    }, {
+                        x: -7,
+                        y: 1.5,
+                        z: -3
+                    }
+                ],
+                [
+                    {
+                        x: -4,
+                        y: 0.5,
+                        z: -3
+                    }, {
+                        x: -4,
+                        y: 1,
+                        z: -3
+                    }, {
+                        x: -4,
+                        y: 1.5,
+                        z: -3
+                    }
+                ],
+                [
+                    {
+                        x: -1,
+                        y: 0.5,
+                        z: -3
+                    }, {
+                        x: -1,
+                        y: 1,
+                        z: -3
+                    }, {
+                        x: -1,
+                        y: 1.5,
+                        z: -3
+                    }
+                ]
+
+            ]
+
+            function fun(ele, w) {
+                var tower = prompt("Please enter tower you wanna send the block");
+                if (lenA.length === 3) {
+                    lenA = [];
+                } else if (lenB.length === 3) {
+                    lenB = [];
+                } else if (lenC.length === 3) {
+                    lenC = [];
+                }
+                // lenB.push("fds");
+                console.log(w);
+                switch (tower) {
+                    case 'A':
+                        {
+                            ele.setAttribute('position', {x: slots[0][lenA.length].x,
+                                y: slots[0][lenA.length].y,
+                                z: slots[0][lenA.length].z
+                            });
+                            // console.log(slots[0][lenA.length()]);
+                            lenA.push(w);
+                            if (lenB.length > 0) {
+                                lenB.pop();
+                            } else if (lenC.length > 0) {
+                                lenC.pop();
+                            }
+                            // console.log(lenA.length())
+                            break;
+                        }
+                    case 'B':
+                        {
+                            // console.log(lenB.length());
+                            ele.setAttribute('position', {x: slots[1][lenB.length].x,
+                                y: slots[1][lenB.length].y,
+                                z: slots[1][lenB.length].z
+                            });
+                            // console.log(slots[1][lenB.length()]); console.log(lenB.length())
+                            lenB.push(w);
+                            if (lenA.length > 0) {
+                                lenA.pop();
+                            } else if (lenC.length > 0) {
+                                lenC.pop();
+                            }
+                            console.log(lenB);
+                            break;
+                        }
+                    case 'C':
+                        {
+                            ele.setAttribute('position', {x: slots[2][lenC.length].x,
+                                y: slots[2][lenC.length].y,
+                                z: slots[2][lenC.length].z
+                            });
+                            // console.log(slots[2][lenC.length()]); console.log(lenC.length())
+                            lenC.push(w);
+                            if (lenB.length > 0) {
+                                lenB.pop();
+                            } else if (lenA.length > 0) {
+                                lenA.pop();
+                            }
+                            break;
+                        }
+                }
+
+            }
+        </script>
+    </body>
+
 </html>
